@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- عدّل اسم العيادة هنا ليظهر في عنوان المتصفح -->
+  <title>عيادة إشراقة لطب وتجميل الأسنان</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       الألوان الأساسية (غيّر --primary لتغيير هوية الموقع بالكامل)
+       ========================================= */
+    :root {
+      --primary: #0f766e;       /* اللون الأساسي للعيادة */
+      --primary-dark: #115e59;  /* درجة أغمق عند الضغط */
+      --accent: #ccfbf1;        /* لون خلفية ناعم */
+      --whatsapp: #25d366;      /* لون زر الواتساب */
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container { max-width: 1000px; margin: auto; padding: 0 20px; }
+
+    /* الشريط العلوي */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-wa { background: var(--whatsapp); }
+    .btn-wa:hover { background: #1ebe5d; }
+
+    /* الواجهة الرئيسية */
+    .hero {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: var(--white);
+      padding: 70px 0;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 2.1rem;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 28px;
+      color: #e2e8f0;
+      font-size: 1.05rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-light {
+      background: var(--white);
+      color: var(--primary);
+    }
+    .btn-light:hover { background: #f1f5f9; }
+
+    /* شريط الأرقام والثقة */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: -30px;
+      margin-bottom: 50px;
+    }
+    .stat-card {
+      background: var(--white);
+      padding: 20px 10px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .stat-card strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    .stat-card span { font-size: 0.85rem; color: var(--muted); }
+
+    /* الأقسام العامة */
+    section { padding: 45px 0; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .section-title h2 { font-size: 1.7rem; margin-bottom: 8px; }
+    .section-title p { color: var(--muted); }
+
+    /* الخدمات */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      transition: 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .card p { font-size: 0.92rem; color: var(--muted); }
+
+    /* نموذج الحجز الذكي */
+    .booking-box {
+      background: var(--white);
+      max-width: 600px;
+      margin: auto;
+      padding: 30px 24px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+      border: 1px solid #e2e8f0;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+    }
+    .full-btn { width: 100%; padding: 14px; font-size: 1.05rem; }
+
+    /* التذييل */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 35px 20px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    footer strong { color: var(--white); }
+
+    /* زر واتساب عائم */
+    .float-wa {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--whatsapp);
+      color: var(--white);
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي -->
+  <header>
+    <div class="container nav">
+      <!-- عدّل اسم العيادة هنا -->
+      <div class="logo">عيادة إشراقة للأسنان</div>
+      <a href="#booking" class="btn">احجز موعدك</a>
+    </div>
+  </header>
+
+  <!-- الواجهة الرئيسية -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">تقييم 4.9 من مرضانا • الرياض - حي العليا</div>
+      <h1>ابتسامتك تبدأ بعناية طبية دقيقة وبدون ألم</h1>
+      <p>نخبة من أطباء وتجميل الأسنان بأحدث الأجهزة الرقمية، مع مواعيد مرنة وخطط علاج واضحة من أول زيارة.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-light">احجز موعدك خلال دقيقة</a>
+        <a href="#services" class="btn">تصفح الخدمات</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- أرقام الثقة -->
+  <div class="container">
+    <div class="stats">
+      <div class="stat-card">
+        <strong>+5,000</strong>
+        <span>مراجع سعيد</span>
+      </div>
+      <div class="stat-card">
+        <strong>+10</strong>
+        <span>سنوات خبرة</span>
+      </div>
+      <div class="stat-card">
+        <strong>100%</strong>
+        <span>تعقيم رقمي</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- قسم الخدمات -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>خدماتنا المتخصصة</h2>
+        <p>عناية متكاملة تناسب جميع أفراد العائلة</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">✨</div>
+          <h3>تجميل وابتسامة هوليود</h3>
+          <p>عدسات فينير طبيعية ومخصصة لملامح وجهك بأعلى درجات المتانة والجمال.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🦷</div>
+          <h3>تقويم الأسنان الشفاف</h3>
+          <p>تقويم مريح وغير مرئي لتصحيح اصطفاف الأسنان بنتائج دقيقة وسريعة.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>زراعة الأسنان الفورية</h3>
+          <p>تعويض الأسنان المفقودة بغرسات ألمانية وسويسرية مع ضمان طويل الأمد.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💎</div>
+          <h3>تبييض وتنظيف بالليزر</h3>
+          <p>إزالة التصبغات والجير وتفتيح لون الأسنان بأمان في جلسة واحدة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم الحجز المباشر للواتساب -->
+  <section id="booking">
+    <div class="container">
+      <div class="section-title">
+        <h2>احجز موعدك الآن</h2>
+        <p>أدخل بياناتك وسيتم تحويل طلبك مباشرة لموظفة الاستقبال عبر الواتساب</p>
+      </div>
+      <div class="booking-box">
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="name">الاسم الكامل</label>
+            <input type="text" id="name" placeholder="مثال: عبدالله السبيعي" required />
+          </div>
+          <div class="form-group">
+            <label for="service">الخدمة المطلوبة</label>
+            <select id="service">
+              <option value="كشف واستشارة مبدئية">كشف واستشارة مبدئية</option>
+              <option value="تبييض وتنظيف الأسنان">تبييض وتنظيف الأسنان</option>
+              <option value="تجميل وابتسامة هوليود">تجميل وابتسامة هوليود</option>
+              <option value="تقويم الأسنان">تقويم الأسنان</option>
+              <option value="زراعة الأسنان">زراعة الأسنان</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="time">الوقت المفضل للزيارة</label>
+            <select id="time">
+              <option value="الفترة الصباحية (10 ص - 1 م)">الفترة الصباحية (10 ص - 1 م)</option>
+              <option value="الفترة المسائية (4 م - 10 م)">الفترة المسائية (4 م - 10 م)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="notes">ملاحظة إضافية (اختياري)</label>
+            <textarea id="notes" rows="2" placeholder="أي استفسار أو يوم معين تفضله..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-wa full-btn">تأكيد الحجز عبر واتساب</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- التذييل -->
+  <footer>
+    <!-- عدّل العنوان وساعات العمل هنا -->
+    <p><strong>عيادة إشراقة لطب وتجميل الأسنان</strong> — الرياض، طريق الملك فهد</p>
+    <p style="margin-top:6px;">ساعات العمل: السبت إلى الخميس (10 صباحاً – 10 مساءً)</p>
+  </footer>
+
+  <!-- زر واتساب عائم -->
+  <a href="#booking" class="float-wa">💬 حجز سريع</a>
+
+  <script>
+    /* =========================================
+       ضع هنا رقم واتساب العميل مع مفتاح الدولة وبدون علامة +
+       مثال لرقم يمني: 967770000000 | مثال لرقم سعودي: 966500000000
+       ========================================= */
+    const clinicPhone = "966500000000";
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const service = document.getElementById("service").value;
+      const time = document.getElementById("time").value;
+      const notes = document.getElementById("notes").value.trim() || "لا توجد";
+
+      const message =
+        `السلام عليكم، أرغب بحجز موعد في العيادة:\n` +
+        `• الاسم: ${name}\n` +
+        `• الخدمة: ${service}\n` +
+        `• الوقت المفضل: ${time}\n` +
+        `• ملاحظات: ${notes}`;
+
+      const url = `https://wa.me/${clinicPhone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
